@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="key.secretkey.crypto.PgpHandler"
+    android:background="#eee"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_500"
+            android:text="CATEGORY HERE"
+            android:id="@+id/crypto_password_category"
+            android:layout_gravity="center_vertical"
+            android:textSize="18dp"
+            android:textIsSelectable="false"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/crypto_password_file_edit"
+            android:hint="@string/crypto_name_hint"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="24dp"
+            android:textColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_weight="1">
+        <LinearLayout
+            android:id="@+id/crypto_container"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/crypto_pass_label"
+                    android:id="@+id/textView2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/crypto_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="monospace"
+                android:layout_weight="1"
+                android:layout_toRightOf="@+id/textView2"
+                android:layout_toEndOf="@+id/textView2" />
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/generate_password"
+                android:text="@string/pwd_generate_button"
+                android:onClick="handleClick"
+                android:layout_gravity="right" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/crypto_extra_label"/>
+
+            <EditText
+                android:id="@+id/crypto_extra_edit"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:enabled="true"
+                android:visibility="visible"
+                android:typeface="monospace"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
