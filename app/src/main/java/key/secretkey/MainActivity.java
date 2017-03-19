@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+import key.secretkey.utils.PasswordItem;
+import key.secretkey.utils.PasswordRecyclerAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -52,5 +58,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createPassword() {
+    }
+
+    public void matchPasswordWithApp(PasswordItem item) {
+    }
+
+    public void decryptPassword(PasswordItem item) {
+    }
+
+    public void deletePasswords(PasswordRecyclerAdapter passwordRecyclerAdapter, TreeSet<Integer> integers) {
+    }
+
+    public void editPassword(PasswordItem passwordItem) {
+    }
+
+    public void movePasswords(ArrayList<PasswordItem> selectedPasswords) {
     }
 }

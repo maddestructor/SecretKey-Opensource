@@ -6,22 +6,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.zeapo.pwdstore.PasswordFragment;
-import com.zeapo.pwdstore.PasswordStore;
-import com.zeapo.pwdstore.R;
+import key.secretkey.PasswordFragment;
+import key.secretkey.MainActivity;
+import key.secretkey.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
 public class PasswordRecyclerAdapter extends EntryRecyclerAdapter {
-    private final PasswordStore activity;
+    private final MainActivity activity;
     private final PasswordFragment.OnFragmentInteractionListener listener;
     private ActionMode mActionMode;
     private Boolean canEdit;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PasswordRecyclerAdapter(PasswordStore activity, PasswordFragment.OnFragmentInteractionListener listener, ArrayList<PasswordItem> values) {
+    public PasswordRecyclerAdapter(MainActivity activity, PasswordFragment.OnFragmentInteractionListener listener, ArrayList<PasswordItem> values) {
         super(activity, values);
         this.activity = activity;
         this.listener = listener;

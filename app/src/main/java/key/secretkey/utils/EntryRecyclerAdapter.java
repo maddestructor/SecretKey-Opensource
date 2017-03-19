@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zeapo.pwdstore.R;
+import key.secretkey.R;
 
 import java.util.ArrayList;
 import java.util.Set;

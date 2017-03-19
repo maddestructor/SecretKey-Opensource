@@ -14,10 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import key.secretkey.crypto.PgpHandler;
+import key.secretkey.utils.FolderRecyclerAdapter;
 import key.secretkey.utils.PasswordItem;
-import key.secretkey.utils.PasswordRecyclerAdapter;
-import key.secretkey.utils.DividerItemDecoration;
-//import key.secretkey.utils.PasswordRepository;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ import java.util.Stack;
  * with a GridView.
  * <p />
  */
-public class PasswordFragment extends Fragment {
+public class SelectFolderFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(PasswordItem item);
@@ -40,7 +39,7 @@ public class PasswordFragment extends Fragment {
     private Stack<ArrayList<PasswordItem>> passListStack;
     private Stack<File> pathStack;
     private Stack<Integer> scrollPosition;
-    private PasswordRecyclerAdapter recyclerAdapter;
+    private FolderRecyclerAdapter recyclerAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private OnFragmentInteractionListener mListener;
@@ -50,7 +49,7 @@ public class PasswordFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PasswordFragment() {   }
+    public SelectFolderFragment() {   }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class PasswordFragment extends Fragment {
         passListStack = new Stack<ArrayList<PasswordItem>>();
         scrollPosition = new Stack<Integer>();
         pathStack = new Stack<File>();
-//        recyclerAdapter = new PasswordRecyclerAdapter((PasswordStore) getActivity(), mListener,
+//        recyclerAdapter = new FolderRecyclerAdapter((PgpHandler) getActivity(), mListener,
 //                                                      PasswordRepository.getPasswords(new File(path), PasswordRepository.getRepositoryDirectory(getActivity())));
     }
 
@@ -77,7 +76,7 @@ public class PasswordFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         // use divider
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.divider));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.divider));
 
         // Set the adapter
         recyclerView.setAdapter(recyclerAdapter);
@@ -97,10 +96,10 @@ public class PasswordFragment extends Fragment {
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-        try {
-            mListener = new OnFragmentInteractionListener() {
-                public void onFragmentInteraction(PasswordItem item) {
-                    if (item.getType() == PasswordItem.TYPE_CATEGORY) {
+//        try {
+//            mListener = new OnFragmentInteractionListener() {
+//                public void onFragmentInteraction(PasswordItem item) {
+//                    if (item.getType() == PasswordItem.TYPE_CATEGORY) {
 //                        // push the current password list (non filtered plz!)
 //                        passListStack.push(pathStack.isEmpty() ?
 //                                                PasswordRepository.getPasswords(PasswordRepository.getRepositoryDirectory(context)) :
@@ -114,23 +113,17 @@ public class PasswordFragment extends Fragment {
 //                        recyclerAdapter.addAll(PasswordRepository.getPasswords(item.getFile(), PasswordRepository.getRepositoryDirectory(context)));
 //
 //                        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    } else {
-                        if (getArguments().getBoolean("matchWith", false)) {
-                            ((MainActivity) getActivity()).matchPasswordWithApp(item);
-                        } else {
-                            ((MainActivity) getActivity()).decryptPassword(item);
-                        }
-                    }
-                }
-
-                public void savePosition(Integer position) {
-
-                }
-            };
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                + " must implement OnFragmentInteractionListener");
-        }
+//                    }
+//                }
+//
+//                public void savePosition(Integer position) {
+//
+//                }
+//            };
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException(context.toString()
+//                + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override

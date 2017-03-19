@@ -36,7 +36,7 @@ import com.google.common.primitives.Longs;
 import key.secretkey.BuildConfig;
 import key.secretkey.R;
 import key.secretkey.pwgenDialogFragment;
-import key.secretkey.utils.PasswordRepository;
+import key.secretkey.SelectFolderFragment;
 
 import org.apache.commons.io.FileUtils;
 import org.openintents.openpgp.IOpenPgpService2;
@@ -176,9 +176,9 @@ public class PgpHandler extends AppCompatActivity implements OpenPgpServiceConne
                 setResult(RESULT_CANCELED);
                 finish();
                 return true;
-            case R.id.crypto_select:
-                selectFolder();
-                break;
+//            case R.id.crypto_select:
+//                selectFolder();
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -455,7 +455,7 @@ public class PgpHandler extends AppCompatActivity implements OpenPgpServiceConne
 
         passwordList = new SelectFolderFragment();
         Bundle args = new Bundle();
-        args.putString("Path", PasswordRepository.getRepositoryDirectory(getApplicationContext()).getAbsolutePath());
+//        args.putString("Path", PasswordRepository.getRepositoryDirectory(getApplicationContext()).getAbsolutePath());
 
         passwordList.setArguments(args);
 
