@@ -1,4 +1,4 @@
-package key.secretkey.pwgen;
+package key.secretkey.passwordGeneration;
 
 import android.content.Context;
 import android.content.SharedPreferences;

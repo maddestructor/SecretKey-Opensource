@@ -1,4 +1,4 @@
-package key.secretkey.pwgen;
+package key.secretkey.passwordGeneration;
 
 /*
  * This software is provided 'as-is', without any express or implied

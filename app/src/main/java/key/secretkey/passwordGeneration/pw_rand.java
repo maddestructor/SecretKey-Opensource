@@ -1,4 +1,4 @@
-package key.secretkey.pwgen;
+package key.secretkey.passwordGeneration;
 
 public class pw_rand {
 

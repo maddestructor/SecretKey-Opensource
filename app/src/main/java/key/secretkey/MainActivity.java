@@ -157,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void createNewRepository() {
+        initRepository(NEW_REPO_BUTTON);
+    }
+
     private void createRepository() {
         if (!PasswordStorage.isInitialized()) {
             PasswordStorage.initialize(this);
@@ -256,9 +260,11 @@ public class MainActivity extends AppCompatActivity {
 //            getSupportActionBar().hide();
 
             fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            Snackbar snack = Snackbar.make(findViewById(R.id.main_layout), "You fucked up, you shouldn't be here XD",
-                    Snackbar.LENGTH_INDEFINITE);
-            snack.show();
+//            Snackbar snack = Snackbar.make(findViewById(R.id.main_layout), "You fucked up, you shouldn't be here XD",
+//                    Snackbar.LENGTH_INDEFINITE);
+//            snack.show();
+
+            createNewRepository();
 
 //            ToCloneOrNot cloneFrag = new ToCloneOrNot();
 //            fragmentTransaction.replace(R.id.main_layout, cloneFrag, "ToCloneOrNot");
