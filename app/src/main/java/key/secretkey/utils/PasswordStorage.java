@@ -9,27 +9,27 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.lib.StoredConfig;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.eclipse.jgit.transport.RefSpec;
-import org.eclipse.jgit.transport.RemoteConfig;
-import org.eclipse.jgit.transport.URIish;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.Collections.sort;
 
-public class PasswordRepository {
+/****CODE PARTIELLEMENT EMPRUNTÉ****/
+    /* Les lignes suivantes s'inpire beaucoup du projet open source */
+    /* Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo */
+    /* Ce sont principalement les définitions des paramètres del'api openpgp */
+
+public class PasswordStorage {
 
     private static Repository repository;
     private static boolean initialized = false;
 
-    protected PasswordRepository(){    }
+    protected PasswordStorage(){    }
 
     /**
      * Returns the git repository
@@ -63,51 +63,51 @@ public class PasswordRepository {
     }
 
     // TODO add multiple remotes support for pull/push
-    public static void addRemote(String name, String url, Boolean replace) {
-        StoredConfig storedConfig = repository.getConfig();
-        Set<String> remotes = storedConfig.getSubsections("remote");
-
-        if (!remotes.contains(name)) {
-            try {
-                URIish uri = new URIish(url);
-                RefSpec refSpec = new RefSpec("+refs/head/*:refs/remotes/" + name + "/*");
-
-                RemoteConfig remoteConfig = new RemoteConfig(storedConfig, name);
-                remoteConfig.addFetchRefSpec(refSpec);
-                remoteConfig.addPushRefSpec(refSpec);
-                remoteConfig.addURI(uri);
-                remoteConfig.addPushURI(uri);
-
-                remoteConfig.update(storedConfig);
-
-                storedConfig.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (replace) {
-            try {
-                URIish uri = new URIish(url);
-
-                RemoteConfig remoteConfig = new RemoteConfig(storedConfig, name);
-                // remove the first and eventually the only uri
-                if (remoteConfig.getURIs().size() > 0) {
-                    remoteConfig.removeURI(remoteConfig.getURIs().get(0));
-                }
-                if (remoteConfig.getPushURIs().size() > 0) {
-                    remoteConfig.removePushURI(remoteConfig.getPushURIs().get(0));
-                }
-
-                remoteConfig.addURI(uri);
-                remoteConfig.addPushURI(uri);
-
-                remoteConfig.update(storedConfig);
-
-                storedConfig.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static void addRemote(String name, String url, Boolean replace) {
+//        StoredConfig storedConfig = repository.getConfig();
+//        Set<String> remotes = storedConfig.getSubsections("remote");
+//
+//        if (!remotes.contains(name)) {
+//            try {
+//                URIish uri = new URIish(url);
+//                RefSpec refSpec = new RefSpec("+refs/head/*:refs/remotes/" + name + "/*");
+//
+//                RemoteConfig remoteConfig = new RemoteConfig(storedConfig, name);
+//                remoteConfig.addFetchRefSpec(refSpec);
+//                remoteConfig.addPushRefSpec(refSpec);
+//                remoteConfig.addURI(uri);
+//                remoteConfig.addPushURI(uri);
+//
+//                remoteConfig.update(storedConfig);
+//
+//                storedConfig.save();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else if (replace) {
+//            try {
+//                URIish uri = new URIish(url);
+//
+//                RemoteConfig remoteConfig = new RemoteConfig(storedConfig, name);
+//                // remove the first and eventually the only uri
+//                if (remoteConfig.getURIs().size() > 0) {
+//                    remoteConfig.removeURI(remoteConfig.getURIs().get(0));
+//                }
+//                if (remoteConfig.getPushURIs().size() > 0) {
+//                    remoteConfig.removePushURI(remoteConfig.getPushURIs().get(0));
+//                }
+//
+//                remoteConfig.addURI(uri);
+//                remoteConfig.addPushURI(uri);
+//
+//                remoteConfig.update(storedConfig);
+//
+//                storedConfig.save();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public static void closeRepository() {
         if (repository != null) repository.close();
@@ -143,12 +143,12 @@ public class PasswordRepository {
             settings.edit().putBoolean("repository_initialized", false).apply();
         }
 
-        if (!PasswordRepository.getPasswords(dir).isEmpty()) {
+        if (!PasswordStorage.getPasswords(dir).isEmpty()) {
             settings.edit().putBoolean("repository_initialized", true).apply();
         }
 
-        // create the repository static variable in PasswordRepository
-        return PasswordRepository.getRepository(new File(dir.getAbsolutePath() + "/.git"));
+        // create the repository static variable in PasswordStorage
+        return PasswordStorage.getRepository(new File(dir.getAbsolutePath() + "/.git"));
     }
 
     /**
@@ -201,3 +201,5 @@ public class PasswordRepository {
         return passwordList;
     }
 }
+
+//FIN DU CODE PARTIELLEMENT EMPRUNTÉ

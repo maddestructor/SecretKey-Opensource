@@ -2,6 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:pwstore="http://schemas.android.com/apk/res-auto"
     tools:context="key.secretkey.crypto.PgpHandler" >
+
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--Le menu des handler pgp-->
+
     <item android:title="Share as plaintext"
         android:icon="@drawable/ic_share_white_24dp"
         pwstore:showAsAction="ifRoom"
@@ -18,3 +24,4 @@
         android:id="@+id/edit_password"
         />
 </menu>
+    <!--FIN DU CODE EMPRUNTÉ-->

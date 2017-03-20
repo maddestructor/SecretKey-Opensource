@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+/**   CODE EMPRUNTÉ
+ *      Les lignes suivantes proviennent du projet open source
+ *      Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo
+ */
 public class PasswordRecyclerAdapter extends EntryRecyclerAdapter {
     private final MainActivity activity;
     private final PasswordFragment.OnFragmentInteractionListener listener;
@@ -133,3 +137,7 @@ public class PasswordRecyclerAdapter extends EntryRecyclerAdapter {
         }
     };
 }
+/*
+ *  FIN DU CODE EMPRUNTÉ
+ */
+

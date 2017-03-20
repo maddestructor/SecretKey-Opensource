@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,8 @@ import android.view.ViewGroup;
 import key.secretkey.crypto.PgpHandler;
 import key.secretkey.utils.FolderRecyclerAdapter;
 import key.secretkey.utils.PasswordItem;
+import key.secretkey.utils.PasswordStorage;
+import key.secretkey.utils.DividerItemDecoration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ import java.util.Stack;
  * with a GridView.
  * <p />
  */
+
+/****CODE EMPRUNTÉ****/
+    /* Les lignes suivantes proviennent du projet open source */
+    /* Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo */
+    /* Ce sont principalement des méthodes servant a effectuer des opérations sur les mot de passe */
 public class SelectFolderFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
@@ -60,8 +66,8 @@ public class SelectFolderFragment extends Fragment {
         passListStack = new Stack<ArrayList<PasswordItem>>();
         scrollPosition = new Stack<Integer>();
         pathStack = new Stack<File>();
-//        recyclerAdapter = new FolderRecyclerAdapter((PgpHandler) getActivity(), mListener,
-//                                                      PasswordRepository.getPasswords(new File(path), PasswordRepository.getRepositoryDirectory(getActivity())));
+        recyclerAdapter = new FolderRecyclerAdapter((PgpHandler) getActivity(), mListener,
+                                                      PasswordStorage.getPasswords(new File(path), PasswordStorage.getRepositoryDirectory(getActivity())));
     }
 
     @Override
@@ -76,7 +82,7 @@ public class SelectFolderFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         // use divider
-//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.divider));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.divider));
 
         // Set the adapter
         recyclerView.setAdapter(recyclerAdapter);
@@ -96,34 +102,34 @@ public class SelectFolderFragment extends Fragment {
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-//        try {
-//            mListener = new OnFragmentInteractionListener() {
-//                public void onFragmentInteraction(PasswordItem item) {
-//                    if (item.getType() == PasswordItem.TYPE_CATEGORY) {
-//                        // push the current password list (non filtered plz!)
-//                        passListStack.push(pathStack.isEmpty() ?
-//                                                PasswordRepository.getPasswords(PasswordRepository.getRepositoryDirectory(context)) :
-//                                                PasswordRepository.getPasswords(pathStack.peek(), PasswordRepository.getRepositoryDirectory(context)));
-//                        //push the category were we're going
-//                        pathStack.push(item.getFile());
-//                        scrollPosition.push(recyclerView.getVerticalScrollbarPosition());
-//
-//                        recyclerView.scrollToPosition(0);
-//                        recyclerAdapter.clear();
-//                        recyclerAdapter.addAll(PasswordRepository.getPasswords(item.getFile(), PasswordRepository.getRepositoryDirectory(context)));
-//
-//                        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//                    }
-//                }
-//
-//                public void savePosition(Integer position) {
-//
-//                }
-//            };
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(context.toString()
-//                + " must implement OnFragmentInteractionListener");
-//        }
+        try {
+            mListener = new OnFragmentInteractionListener() {
+                public void onFragmentInteraction(PasswordItem item) {
+                    if (item.getType() == PasswordItem.TYPE_CATEGORY) {
+                        // push the current password list (non filtered plz!)
+                        passListStack.push(pathStack.isEmpty() ?
+                                                PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(context)) :
+                                                PasswordStorage.getPasswords(pathStack.peek(), PasswordStorage.getRepositoryDirectory(context)));
+                        //push the category were we're going
+                        pathStack.push(item.getFile());
+                        scrollPosition.push(recyclerView.getVerticalScrollbarPosition());
+
+                        recyclerView.scrollToPosition(0);
+                        recyclerAdapter.clear();
+                        recyclerAdapter.addAll(PasswordStorage.getPasswords(item.getFile(), PasswordStorage.getRepositoryDirectory(context)));
+
+                        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    }
+                }
+
+                public void savePosition(Integer position) {
+
+                }
+            };
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -141,7 +147,7 @@ public class SelectFolderFragment extends Fragment {
         pathStack.clear();
         scrollPosition.clear();
         recyclerAdapter.clear();
-//        recyclerAdapter.addAll(PasswordRepository.getPasswords(PasswordRepository.getRepositoryDirectory(getActivity())));
+//        recyclerAdapter.addAll(PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(getActivity())));
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
@@ -151,9 +157,9 @@ public class SelectFolderFragment extends Fragment {
      */
     public void refreshAdapter() {
         recyclerAdapter.clear();
-//        recyclerAdapter.addAll(pathStack.isEmpty() ?
-//                                        PasswordRepository.getPasswords(PasswordRepository.getRepositoryDirectory(getActivity())) :
-//                                        PasswordRepository.getPasswords(pathStack.peek(), PasswordRepository.getRepositoryDirectory(getActivity())));
+        recyclerAdapter.addAll(pathStack.isEmpty() ?
+                                        PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(getActivity())) :
+                                        PasswordStorage.getPasswords(pathStack.peek(), PasswordStorage.getRepositoryDirectory(getActivity())));
     }
 
     /**
@@ -178,8 +184,8 @@ public class SelectFolderFragment extends Fragment {
 //    private void recursiveFilter(String filter, File dir) {
 //        // on the root the pathStack is empty
 //        ArrayList<PasswordItem> passwordItems = dir == null ?
-//                PasswordRepository.getPasswords(PasswordRepository.getRepositoryDirectory(getActivity())) :
-//                PasswordRepository.getPasswords(dir, PasswordRepository.getRepositoryDirectory(getActivity()));
+//                PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(getActivity())) :
+//                PasswordStorage.getPasswords(dir, PasswordStorage.getRepositoryDirectory(getActivity()));
 //
 //        boolean rec = settings.getBoolean("filter_recursively", true);
 //        for (PasswordItem item : passwordItems) {
@@ -213,14 +219,16 @@ public class SelectFolderFragment extends Fragment {
      * gets the current directory
      * @return the current directory
      */
-//    public File getCurrentDir() {
-//        if (pathStack.isEmpty())
-//            return PasswordRepository.getRepositoryDirectory(getActivity().getApplicationContext());
-//        else
-//            return pathStack.peek();
-//    }
+    public File getCurrentDir() {
+        if (pathStack.isEmpty())
+            return PasswordStorage.getRepositoryDirectory(getActivity().getApplicationContext());
+        else
+            return pathStack.peek();
+    }
 
     public boolean isNotEmpty() {
         return !passListStack.isEmpty();
     }
 }
+
+//FIN DU CODE EMPRUNTÉ

@@ -6,39 +6,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#eee">
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--La représentation graphique permettant de voir les identificateurs de clés-->
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle">
+        android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Key-id: "
             android:layout_column="0"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:text="Key-id: " />
+
         <TextView
             android:id="@+id/crypto_key_ids"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No key selected"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_purple"
             android:layout_column="1"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="No key selected"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/crypto_get_key_ids"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="3"
-            android:src="@drawable/ic_action_accounts"
+            android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             android:onClick="handleClick"
-            android:layout_gravity="center_vertical"/>
-        </GridLayout>
+            android:src="@drawable/ic_action_accounts" />
+    </GridLayout>
 
 
 </LinearLayout>
+    <!--FIN DU CODE EMPRUNTÉ-->

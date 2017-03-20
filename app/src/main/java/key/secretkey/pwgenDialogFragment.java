@@ -24,6 +24,11 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
+
+/****CODE EMPRUNTÉ****/
+    /* Les lignes suivantes proviennent du projet open source */
+    /* Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo */
+    /* Ce sont principalement des méthodes servant a effectuer des opérations sur les mot de passe */
 public class pwgenDialogFragment extends DialogFragment {
 
     public pwgenDialogFragment() {
@@ -129,4 +134,6 @@ public class pwgenDialogFragment extends DialogFragment {
         }
     }
 }
+
+//FIN DU CODE EMPRUNTÉ
 
