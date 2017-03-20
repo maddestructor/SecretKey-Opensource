@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--Le fragment à charger lorsqu'on veut générer un mot de passe-->
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -103,3 +108,4 @@
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
+    <!--FIN DU CODE EMPRUNTÉ-->

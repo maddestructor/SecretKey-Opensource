@@ -2,6 +2,11 @@ package key.secretkey.utils;
 
 import java.io.File;
 
+/**   CODE EMPRUNTÉ
+ *      Les lignes suivantes proviennent du projet open source
+ *      Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo
+ *      Ces lignes représentent le modèle d'un mot de passe
+ */
 public class PasswordItem implements Comparable{
 
     public final static char TYPE_CATEGORY = 'c';
@@ -107,3 +112,7 @@ public class PasswordItem implements Comparable{
                 .compareTo(other.getType() + other.getName());
     }
 }
+
+/*
+ *  FIN DU CODE EMPRUNTÉ
+ */

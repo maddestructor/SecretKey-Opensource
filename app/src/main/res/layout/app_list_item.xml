@@ -7,6 +7,11 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--Représentation physique d'un item dans la liste-->
+
     <ImageView
         android:id="@android:id/icon1"
         android:layout_width="24dp"
@@ -21,3 +26,4 @@
         android:textAppearance="?android:attr/textAppearanceListItemSmall" />
 
 </LinearLayout>
+    <!--FIN DU CODE EMPRUNTÉ-->

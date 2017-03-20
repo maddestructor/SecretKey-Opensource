@@ -11,12 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zeapo.pwdstore.R;
+import key.secretkey.R;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**   CODE EMPRUNTÉ
+ *      Les lignes suivantes proviennent du projet open source
+ *      Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo
+ */
 public abstract class EntryRecyclerAdapter extends RecyclerView.Adapter<EntryRecyclerAdapter.ViewHolder> {
     private final Activity activity;
     protected final ArrayList<PasswordItem> values;
@@ -160,3 +164,7 @@ public abstract class EntryRecyclerAdapter extends RecyclerView.Adapter<EntryRec
         return new ViewHolder(v);
     }
 }
+
+/*
+ *  FIN DU CODE EMPRUNTÉ
+ */

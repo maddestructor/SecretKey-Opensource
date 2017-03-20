@@ -1,11 +1,7 @@
 package key.secretkey;
 
 import android.Manifest;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -13,22 +9,16 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
@@ -36,22 +26,24 @@ import com.google.common.collect.Iterables;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 //import key.secretkey.autofill.AutofillPreferenceActivity;
 import key.secretkey.crypto.PgpHandler;
+import key.secretkey.utils.PasswordStorage;
 //import key.secretkey.git.GitActivity;
-import key.secretkey.utils.PasswordRepository;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.openintents.openpgp.util.OpenPgpUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+/****CODE PARTIELLEMENT EMPRUNTÉ****/
+    /* Les lignes suivantes s'inpire beaucoup du projet open source */
+    /* Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo */
+    /* Ce sont principalement les définitions des paramètres del'api openpgp */
 
 public class SettingsActivity extends AppCompatActivity {
     private final static int IMPORT_SSH_KEY = 1;
@@ -379,7 +371,7 @@ public class SettingsActivity extends AppCompatActivity {
 //                break;
                 case EXPORT_PASSWORDS: {
                     final Uri uri = data.getData();
-                    final File repositoryDirectory = PasswordRepository.getRepositoryDirectory(getApplicationContext());
+                    final File repositoryDirectory = PasswordStorage.getRepositoryDirectory(getApplicationContext());
                     SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.US);
                     Date date = new Date();
                     String password_now = "/password_store_" + fmtOut.format(date);
@@ -411,3 +403,5 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 }
+
+    //FIN DU CODE PARTIELLEMENT EMPRUNTÉ

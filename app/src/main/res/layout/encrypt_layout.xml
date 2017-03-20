@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="key.secretkey.crypto.PgpHandler"
-    android:background="#eee"
     android:padding="@dimen/activity_horizontal_margin">
+
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--La représentation graphique lorsque nous voulons nos mots de passe encrypté-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,3 +102,4 @@
     </ScrollView>
 
 </LinearLayout>
+    <!--FIN DU CODE EMPRUNTÉ-->

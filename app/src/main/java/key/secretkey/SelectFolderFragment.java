@@ -13,10 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import key.secretkey.crypto.PgpHandler;
+import key.secretkey.utils.FolderRecyclerAdapter;
 import key.secretkey.utils.PasswordItem;
-import key.secretkey.utils.PasswordRecyclerAdapter;
-import key.secretkey.utils.DividerItemDecoration;
 import key.secretkey.utils.PasswordStorage;
+import key.secretkey.utils.DividerItemDecoration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import java.util.Stack;
     /* Les lignes suivantes proviennent du projet open source */
     /* Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo */
     /* Ce sont principalement des méthodes servant a effectuer des opérations sur les mot de passe */
-public class PasswordFragment extends Fragment {
+public class SelectFolderFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(PasswordItem item);
@@ -44,7 +45,7 @@ public class PasswordFragment extends Fragment {
     private Stack<ArrayList<PasswordItem>> passListStack;
     private Stack<File> pathStack;
     private Stack<Integer> scrollPosition;
-    private PasswordRecyclerAdapter recyclerAdapter;
+    private FolderRecyclerAdapter recyclerAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private OnFragmentInteractionListener mListener;
@@ -54,7 +55,7 @@ public class PasswordFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PasswordFragment() {   }
+    public SelectFolderFragment() {   }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class PasswordFragment extends Fragment {
         passListStack = new Stack<ArrayList<PasswordItem>>();
         scrollPosition = new Stack<Integer>();
         pathStack = new Stack<File>();
-        recyclerAdapter = new PasswordRecyclerAdapter((MainActivity) getActivity(), mListener,
+        recyclerAdapter = new FolderRecyclerAdapter((PgpHandler) getActivity(), mListener,
                                                       PasswordStorage.getPasswords(new File(path), PasswordStorage.getRepositoryDirectory(getActivity())));
     }
 
@@ -118,12 +119,6 @@ public class PasswordFragment extends Fragment {
                         recyclerAdapter.addAll(PasswordStorage.getPasswords(item.getFile(), PasswordStorage.getRepositoryDirectory(context)));
 
                         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    } else {
-                        if (getArguments().getBoolean("matchWith", false)) {
-                            ((MainActivity) getActivity()).matchPasswordWithApp(item);
-                        } else {
-                            ((MainActivity) getActivity()).decryptPassword(item);
-                        }
                     }
                 }
 
@@ -152,7 +147,7 @@ public class PasswordFragment extends Fragment {
         pathStack.clear();
         scrollPosition.clear();
         recyclerAdapter.clear();
-        recyclerAdapter.addAll(PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(getActivity())));
+//        recyclerAdapter.addAll(PasswordStorage.getPasswords(PasswordStorage.getRepositoryDirectory(getActivity())));
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
@@ -235,4 +230,5 @@ public class PasswordFragment extends Fragment {
         return !passListStack.isEmpty();
     }
 }
+
 //FIN DU CODE EMPRUNTÉ

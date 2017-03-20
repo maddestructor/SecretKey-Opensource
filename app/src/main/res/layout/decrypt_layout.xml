@@ -4,8 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="key.secretkey.crypto.PgpHandler"
-    android:orientation="vertical"
-    android:background="#eee">
+    android:orientation="vertical">
+
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--La représentation graphique lorsque nous voulons nos mots de passe décrypté-->
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -32,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:text="PASSWORD FILE NAME HERE"
@@ -82,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:text="Password: "
                     android:layout_row="0"
                     android:layout_column="0"/>
@@ -91,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:typeface="monospace"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_column="2"
                     android:layout_row="0"/>
 
@@ -127,14 +131,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:text="Extra content: "/>
                 <TextView
                     android:id="@+id/crypto_extra_show"
                     android:textIsSelectable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:typeface="monospace"/>
 
             </LinearLayout>
@@ -144,3 +148,4 @@
 
 
 </ScrollView>
+    <!--FIN DU CODE EMPRUNTÉ-->

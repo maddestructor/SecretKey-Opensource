@@ -5,6 +5,11 @@ android:fillViewport="true"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
 
+    <!--CODE EMPRUNTÉ :-->
+    <!--Les lignes suivantes proviennent du projet open source-->
+    <!--Android-Password-Store sous license GPL 3.0 de l'auteur Zeapo-->
+    <!--La représentation graphique de sélection de provider pgp-->
+
 <LinearLayout
     android:padding="8dp"
     android:layout_width="match_parent"
@@ -145,7 +150,7 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="dominik@dominikschuermann.de"
+        android:text="chickenkiller@gmail.com"
         android:id="@+id/crypto_provider_demo_get_key_ids_edit" />
 
     <Button
@@ -156,3 +161,4 @@ android:layout_height="match_parent">
 
 </LinearLayout>
 </ScrollView>
+    <!--FIN DU CODE EMPRUNTÉ-->
