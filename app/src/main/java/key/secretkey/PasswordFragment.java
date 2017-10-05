@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 
 import key.secretkey.utils.PasswordItem;
 import key.secretkey.utils.PasswordRecyclerAdapter;
-import key.secretkey.utils.DividerItemDecoration;
 import key.secretkey.utils.PasswordStorage;
+import key.secretkey.utils.DividerItemDecoration;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package key.secretkey.pwgen;
+package key.secretkey.passwordGeneration;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

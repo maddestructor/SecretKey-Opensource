@@ -35,7 +35,7 @@ import android.widget.Toast;
 import com.google.common.primitives.Longs;
 import key.secretkey.BuildConfig;
 import key.secretkey.R;
-import key.secretkey.pwgenDialogFragment;
+import key.secretkey.passwordGenerationFragment;
 import key.secretkey.SelectFolderFragment;
 import key.secretkey.utils.PasswordStorage;
 
@@ -286,7 +286,7 @@ public class PgpHandler extends AppCompatActivity implements OpenPgpServiceConne
                 getKeyIds(new Intent());
                 break;
             case R.id.generate_password:
-                DialogFragment df = new pwgenDialogFragment();
+                DialogFragment df = new passwordGenerationFragment();
                 df.show(getFragmentManager(), "generator");
             default:
                 Log.wtf(Constants.TAG,"This should not happen.... PgpHandler.java#handleClick(View) default reached.");

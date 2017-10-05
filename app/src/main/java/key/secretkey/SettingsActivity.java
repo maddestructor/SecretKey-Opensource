@@ -87,9 +87,9 @@ public class SettingsActivity extends AppCompatActivity {
         public void onStart() {
             super.onStart();
             final SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
-            findPreference("pref_select_external").setSummary(getPreferenceManager().getSharedPreferences().getString("git_external_repo", getString(R.string.no_repo_selected)));
-            findPreference("ssh_see_key").setEnabled(sharedPreferences.getBoolean("use_generated_key", false));
-            findPreference("git_delete_repo").setEnabled(!sharedPreferences.getBoolean("git_external", false));
+//            findPreference("pref_select_external").setSummary(getPreferenceManager().getSharedPreferences().getString("git_external_repo", getString(R.string.no_repo_selected)));
+//            findPreference("ssh_see_key").setEnabled(sharedPreferences.getBoolean("use_generated_key", false));
+//            findPreference("git_delete_repo").setEnabled(!sharedPreferences.getBoolean("git_external", false));
             Preference keyPref = findPreference("openpgp_key_id_pref");
             Set<String> selectedKeys = sharedPreferences.getStringSet("openpgp_key_ids_set", new HashSet<String>());
             if (selectedKeys.isEmpty()) {
